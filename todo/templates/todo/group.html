@@ -1,0 +1,33 @@
+{%extends 'todo/base.html'%}
+{% block title %}ToDoList{% endblock title %}
+
+{%block content%}
+    <div class="container border border-info rounded" style="width:70%;">
+
+    <form method="post">
+        {%csrf_token%}
+        <h1>{{group.group_title}}</h1>
+        {%for item in items%}
+            <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        {% if item.done == True%}
+                            <input type="checkbox" name="t{{item.id}}" checked>
+                        {%else%}
+                            <input type="checkbox" name="t{{item.id}}">
+                        {%endif%}
+                    </div>
+
+                <input type="text" value="{{item.title}}" class="form-control">
+            </div>
+        {%endfor%}
+        <div class="input-group mb-3">
+            <button type="submit" name="create" value="create" class="btn btn-outline-info">Create</button>
+            <input type="text" name="text" placeholder="Enter your task" class="form-control">
+        </div>
+        <button type="submit" value="save" name="save" class="btn btn-outline-info mb-3">Save</button>
+
+    </form>
+
+    </div>
+
+{%endblock%}

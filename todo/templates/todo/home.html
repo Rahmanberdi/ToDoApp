@@ -1,0 +1,46 @@
+{%extends 'todo/base.html'%}
+{% block title %}Home{% endblock title %}
+
+{%block content%}
+    <div class="container mb-5  " style="width:60%;">
+    <div class="card border-info text-center mx-auto" >
+    {% if user.is_authenticated%}
+        {%if groups %}
+            {%for group in groups%}
+            <div class="card-header">
+                <a  href="{% url 'todo:group' group.id %}" style="text-decoration:none;"><h3 class="card-title">{{group.group_title}}</h3></a>
+            </div>
+            <div class="card-body">
+            <ul class="list-group list-group-flush ">
+                {%for item in group.item.all|slice:":3"%}
+                <li class="list-group-item">
+                    <span class="card-text ">{{ item.title }}{% if item.done %}&nbsp ✅{% else %}&nbsp ⏳{% endif %}</span>
+
+                </li>
+                {%endfor%}
+            </ul>
+            </div>
+
+            {%endfor%}
+        {%else %}
+            <p>You don't have any list. Please create one</p>
+        {%endif%}
+        <form method="POST" class="card-footer">
+        {%csrf_token%}
+        <div class="input-group mb-3">
+          <input class="btn btn-outline-info " type="submit"  name="submit" value="Add list">
+          <input type="text" name="title" class="form-control" placeholder="Enter list name">
+        </div>
+        </form>
+    {%elif not user.is_authenticated%}
+                <p>To use this application please log in first</p>
+                <p>If you have account log in<a href="{%url 'login'%}">here</a></p>
+                <p>if you don't have an account Sign up <a href="{%url 'signup'%}">here</a></p>
+    {%endif%}
+
+    </div>
+
+
+    </div>
+
+{%endblock%}

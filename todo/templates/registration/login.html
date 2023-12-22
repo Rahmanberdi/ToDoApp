@@ -1,0 +1,16 @@
+{%extends 'todo/base.html'%}
+
+<title>{% block title %}Log In{% endblock title %}</title>
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="container border border-info rounded" style="width:50%;">
+    <h2>Log In</h2>
+    <form method="post">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-info mb-3">Log In</button>
+    </form>
+
+</div>
+{%endblock content%}
