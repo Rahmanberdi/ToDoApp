@@ -24,7 +24,6 @@
             {%endfor%}
         {%else %}
             <p>You don't have any list. Please create one</p>
-        {%endif%}
         <form method="POST" class="card-footer">
         {%csrf_token%}
         <div class="input-group mb-3">
@@ -39,8 +38,6 @@
     {%endif%}
 
     </div>
-
-
     </div>
 
 {%endblock%}
