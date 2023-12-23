@@ -31,6 +31,7 @@
           <input type="text" name="title" class="form-control" placeholder="Enter list name">
         </div>
         </form>
+        {%endif%}
     {%elif not user.is_authenticated%}
                 <p>To use this application please log in first</p>
                 <p>If you have account log in<a href="{%url 'login'%}">here</a></p>
