@@ -133,4 +133,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_REDIRECT_URL = 'todo:home'
 LOGOUT_REDIRECT_URL = 'todo:home'
-
+CSRF_TRUSTED_ORIGINS = ['https://todoapp-production-d989.up.railway.app']
